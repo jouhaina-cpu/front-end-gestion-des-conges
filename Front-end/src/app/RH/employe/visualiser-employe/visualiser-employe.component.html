@@ -1,0 +1,103 @@
+<div   class="grid-container">
+    
+    <div class="grid-item item3" style="margin-bottom: 20px;margin-left: 20px;">
+        <mat-label style="font-weight: bold;border-bottom: 1px solid #DEDEDE;"> Informations Générales </mat-label>
+    
+        <div class="row">
+            <mat-label><strong> Nom   : </strong>{{emp.nom}}</mat-label>
+        </div>
+        
+            <div class="row">
+                <mat-label><strong> Numéro de la piéce d'identité   :</strong> {{emp.cin}}</mat-label>
+            </div>
+
+            <div class="row">
+                <mat-label><strong> Email: </strong>{{emp.email}}</mat-label>   
+            </div>
+
+            <div class="row">
+                <mat-label><strong> Téléphone: </strong>{{emp.tel}}</mat-label>   
+            </div> 
+
+            <div class="row">
+                <mat-label><strong> Date d'embauche: </strong>{{emp.dateE}}</mat-label>  
+            </div>      
+            
+            <div class="row">
+                <mat-label><strong> Date de naissance: </strong>{{emp.dateN}}</mat-label>  
+            </div>      
+            
+    </div>
+    
+    <div class="grid-item item5" >
+        <mat-tab-group headerPosition="above">
+            
+            <mat-tab>
+                
+                <ng-template mat-tab-label>   
+                    <mat-icon class="example-tab-icon">contact_page</mat-icon>Coordonnées
+                </ng-template>
+                
+                <div class="row" >
+
+                    <div class="col-md-4 mb-4">
+                        <mat-label><strong> Pays : </strong>{{emp.pays}}</mat-label>   
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <mat-label><strong> Ville : </strong>{{emp.ville}}</mat-label>  
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <mat-label><strong> Adresse : </strong>{{emp.adresse}}</mat-label>  
+                    </div>
+                    
+                </div>
+                
+                <div class="row">
+                      
+                    <div class="col-md-4 mb-4">
+                        <mat-label><strong> Catégorie de permis : </strong>{{emp.categorie}}</mat-label>
+                    </div>
+                        
+                    <div class="col-md-4 mb-4">
+                        <mat-label><strong> N° de permis : </strong>{{emp.numpermis}}</mat-label>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <mat-label><strong> Situation familiale : </strong>{{emp.situation}}</mat-label>
+                    </div>
+                
+                </div>
+                     
+            </mat-tab>            
+    
+            <mat-tab>
+                
+                <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon">attach_money</mat-icon>Identité bancaire
+                </ng-template>
+                    
+                <div class="row">
+                    
+                    <div class="col-md-4 mb-4">
+                        <mat-label><strong> Banque : </strong>{{emp.banque}}</mat-label>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <mat-label><strong> Rib : </strong>{{emp.rib}}</mat-label>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <mat-label><strong> Cnss : </strong>{{emp.cnss}}</mat-label>
+                    </div>
+                
+                </div>           
+                
+            </mat-tab>
+                
+                
+        </mat-tab-group>
+    </div>
+
+</div>

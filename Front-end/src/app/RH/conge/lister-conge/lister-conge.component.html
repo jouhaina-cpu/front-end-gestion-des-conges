@@ -1,0 +1,70 @@
+<div class="row">
+
+    <div class="col-md-3 mb-3">
+        <mat-label for="filtre_par">Choisir un filtre</mat-label>
+        <mat-select id="filtre_par" name="filtre_par" (selectionChange)="ChoixFiltre($event)">
+            <mat-option *ngFor="let filtre of liste_Filtres" [value]="filtre.value">
+                <span *ngIf="filtre.viewValue=='id_employe'">ID Employé</span> 
+                <span *ngIf="filtre.viewValue=='Date_Deb'">Date_Deb</span>   
+                <span *ngIf="filtre.viewValue=='Date_fin'">Date_fin</span>                
+            </mat-option>
+        </mat-select>
+    </div>
+    
+    <div class="search-wrapper active" >
+        <div class="input-holder">
+            <input matInput (keyup)="applyFilter($event)" class="search-input" placeholder="Saisir pour chercher" #input>
+            <button class="search-icon" (click)="filtrer()"><span></span></button>
+        </div>
+    </div>
+
+</div>
+
+<div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="id_Employe">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Id"> {{element.id_Employe}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Image">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Image </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Image"> <img src="../../assets/images/1.jpg"
+            style="height: 50px;width: 50px;margin-top: 2px; margin-bottom: 2px;" /> </mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Date_Deb">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Date_Deb </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Date_Deb"> {{element.Date_Deb}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Date_fin">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Date_fin </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Date_fin"> {{element.Date_fin}} </mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Type">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Type </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Nbrjours"> {{element.Nbrjours}} </mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Supprimer">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element" style="text-align: center;">
+                <mat-icon  routerLink="/Menu/Menu-RH/Menu-conge/Visualiser-conge"title="Visualiser">remove_red_eye</mat-icon >
+                <mat-icon (click)="openDialog()" title="Supprimer"style="color: rgba(255, 0, 0, 0.664); margin-left: 15px;">delete</mat-icon>
+                <mat-icon title="Modifier" routerLink="/Menu/Menu-RH/Menu-conge/Modifer-conge"style="color:blue;margin-left: 15px;">edit</mat-icon>
+            </mat-cell>
+        </ng-container>
+       
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+    </table>
+ 
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+ 
+</div> 
+ 

@@ -1,0 +1,65 @@
+<div class="row">
+
+    <div class="col-md-3 mb-3">
+        <mat-label for="filtre_par">Choisir un filtre</mat-label>
+        <mat-select id="filtre_par" name="filtre_par" (selectionChange)="ChoixFiltre($event)">
+            <mat-option *ngFor="let filtre of liste_Filtres" [value]="filtre.value">
+                <span *ngIf="filtre.viewValue=='id_employe'">ID Employé</span> 
+                <span *ngIf="filtre.viewValue=='nom'">Nom</span>              
+            </mat-option>
+        </mat-select>
+    </div>
+
+    <div class="search-wrapper active" >
+        <div class="input-holder">
+            <input matInput (keyup)="applyFilter($event)" class="search-input" placeholder="Saisir pour chercher" #input>
+            <button class="search-icon" (click)="filtrer()"><span></span></button>
+        </div>
+    </div>
+
+</div>
+
+<div class="mat-elevation-z8">
+    
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="Id_employe">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="id_employe"> {{element.id_employe}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Lundi">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Lundi </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Lundi"> {{element.Lundi}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Mardi">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Mardi </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Mardi"> {{element.Mardi}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Mercredi">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Mercredi </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Mercredi"> {{element.Mercredi}}</mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Jeudi">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Jeudi </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Jeudi"> {{element.Jeudi}} </mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Vendredi">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Vendredi </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Vendredi"> {{element.Vendredi}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+    </table>
+ 
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+ 
+</div> 
+ 

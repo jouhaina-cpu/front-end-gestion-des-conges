@@ -1,0 +1,37 @@
+<main class="box">
+  <div> <img src="./../../assets/images/Logo_Societe.png" style="margin-left: 15%; margin-bottom: 7%;" /></div>
+  <form>
+
+      <div class="col-md-4 mb-4">
+          <mat-form-field>
+              <mat-label for="Email"> Email </mat-label>
+              <input type="text" matInput formControlName="Email" id="Email" name="Email" required>
+              <mat-error *ngIf="Informations_Generales_Form.get('Email').invalid">{{MessageErreurEmail()}}</mat-error>
+          </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-4">
+          <mat-form-field>
+              <mat-label for="Nom"> Mot de passe </mat-label>
+              <input type="password" matInput formControlName="Password" id="Password" name="Password" required>
+              <mat-error *ngIf="Informations_Generales_Form.get('Password').invalid">{{MessageErreurPassword()}}</mat-error>
+          </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <mat-form-field>
+            <mat-label for="Nom"> Entrez à nouveau le mot de passe : </mat-label>
+            <input type="password" matInput formControlName="Password" id="Password" name="Password" required>
+            <mat-error *ngIf="Informations_Generales_Form.get('Password').invalid">{{MessageErreurPassword()}}</mat-error>
+        </mat-form-field>
+    </div>
+
+      <div>
+          <button mat-button class="btn-danger" TYPE="reset" style="margin-top: 20px;">Annuler</button>
+          <a routerLink="/Menu"><button mat-button class="btn-primary" style="margin-top: 20px; margin-right: 20px;">Connexion</button></a>
+      </div>
+
+  </form>
+</main>
+<footer>
+</footer>

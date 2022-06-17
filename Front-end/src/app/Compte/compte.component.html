@@ -1,0 +1,230 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-user">
+            
+            <div class="card-header">
+            <h5 class="card-title">EDITER LE PROFIL</h5>
+            </div>
+        
+            <div class="card-body">
+                <mat-vertical-stepper [linear]="passage_etape" #stepper>
+                    
+                    <mat-step [stepControl]="Informations_Generales_Form">
+                        <form [formGroup]="Informations_Generales_Form">
+                        
+                            <ng-template matStepLabel>Informations Générales</ng-template>
+                            
+                            <div class="row">
+                            
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Nom"> Nom  </mat-label>
+                                        <input type="text" matInput formControlName="Nom_Employe" id="Nom_Employe" name="Nom_Employe" required>
+                                        <mat-error *ngIf="Informations_Generales_Form.get('Nom_Employe').invalid">{{MessageErreurNom()}}</mat-error>    
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Prenom"> Prenom  </mat-label>
+                                        <input type="text" matInput formControlName="Prenom" id="Prenom" name="Prenom"required>
+                                        <mat-error *ngIf="Informations_Generales_Form.get('Prenom').invalid">{{MessageErreurPrenom()}}</mat-error>    
+                                    </mat-form-field>
+                                </div>
+                                
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Email"> Email  </mat-label>
+                                        <input type="text" matInput formControlName="Email" id="Email" name="Email"required>
+                                        <mat-error *ngIf="Informations_Banques_Form.get('Email').invalid">{{MessageErreurEmail()}}</mat-error>    
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label>Téléphone</mat-label>
+                                        <input type="number" matInput formControlName="Tel1" id="Tel1" name="Tel1"placeholder="(+216)99-999-999">
+                                        <mat-error *ngIf="Informations_Banques_Form.get('Tel1').invalid">{{MessageErreurTel()}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <button mat-button class="btn-danger" TYPE="reset" style="margin-top: 20px;">Annuler</button>
+                                <button mat-button matStepperNext (click)="creeremploye()" class="btn-primary" style="margin-top: 20px;">Suivant</button>
+                            </div>
+                            
+                        </form>
+                    </mat-step>
+              
+                    <mat-step [stepControl]="Informations_Banques_Form">
+                        <form [formGroup]="Informations_Banques_Form">
+            
+                            <ng-template matStepLabel>Informations Spécifique</ng-template>
+                            
+                            <div class="row">
+                                
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Adresse"> Adresse personnel </mat-label>
+                                        <input type="text" matInput formControlName="Adresse" id="Adresse" name="Adresse" required>
+                                        <mat-error *ngIf="Informations_Banques_Form.get('Adresse').invalid">{{MessageErreurAdresse()}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Pays"> Pays </mat-label>
+                                        <mat-select formControlName="Pays" id="Pays" name="Pays" placeholder="Pays"(selectionChange)="ChoixPays($event)" required>
+                                            <mat-option></mat-option>
+                                            <mat-option *ngFor="let pays of  categorie_pays" [value]="pays.value">{{pays.viewValue}}</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="Informations_Banques_Form.get('Pays').invalid">{{MessageErreurPays()}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Ville"> Ville </mat-label>
+                                        <mat-select formControlName="Ville" id="Ville" name="Ville" placeholder="Ville"(selectionChange)="ChoixVille($event)">
+                                            <mat-option></mat-option>
+                                            <mat-option *ngFor="let ville of  categorie_ville" [value]="ville.value">{{ville.viewValue}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Cnss">Code Cnss </mat-label>
+                                        <input type="text" matInput formControlName="Cnss" id="Cnss" name="Cnss" >
+                                        <mat-error *ngIf="Informations_Banques_Form.get('Cnss').invalid"></mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Pays"> Situation Familiale </mat-label>
+                                        <mat-select formControlName="St_Familliale" id="St_Familliale" name="St_Familliale" placeholder="St_Familliale"  >
+                                            <mat-option value="Célibataire"> Célibataire </mat-option>
+                                            <mat-option value="Marié"> Marié  </mat-option> 
+                                            <mat-option value="Divorce"> Divorce  </mat-option>                            
+                                        </mat-select>
+                                        <mat-error *ngIf="Informations_Banques_Form.get('St_familliale').invalid"></mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-4">                     
+                                    <mat-form-field>
+                                        <mat-label for="Enfant_a_charge"> Enfant_a_charge </mat-label>
+                                        <input value ="0" type="number" matInput formControlName="Enfant_a_charge" id="Enfant_a_charge" name="Enfant_a_charge"  >
+                                        <mat-error *ngIf="Informations_Banques_Form.get('Enfant_a_charge').invalid"></mat-error>
+                                    </mat-form-field>
+                                </div>
+                            
+                            </div>
+
+                            <div class="row">
+                
+                                <div class="col-md-4 mb-4">                     
+                                    <mat-form-field>
+                                        <mat-label for="N_permis"> N° permis </mat-label>
+                                        <input type="text" matInput formControlName="N_permis" id="N_permis" name="N_permis"  >
+                                        <mat-error *ngIf="Informations_Banques_Form.get('N_permis').invalid"></mat-error>
+                                    </mat-form-field>
+                                </div>                 
+                            
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Pays"> Catégorie  Permis </mat-label>        
+                                        <mat-select formControlName="Categorie_permis" id="Categorie_permis" name="Categorie_permis" placeholder="Categorie_permis"  >
+                                            <mat-option value="A1">A1</mat-option>
+                                            <mat-option value="A2">A2</mat-option>      
+                                            <mat-option value="B1">B1</mat-option>
+                                            <mat-option value="B+E">B+E</mat-option>  
+                                            <mat-option value="C">C</mat-option>
+                                            <mat-option value="C+E">C+E</mat-option>              
+                                            <mat-option value="D">D</mat-option>
+                                            <mat-option value="D+E">D+E</mat-option>  
+                                            <mat-option value="D1">D1</mat-option>
+                                            <mat-option value="H">H</mat-option>           
+                                        </mat-select>
+                                        <mat-error *ngIf="Informations_Banques_Form.get('Categorie_permis').invalid"></mat-error>
+                                    </mat-form-field>
+                                </div>
+                            
+                                <div class="col-md-4 mb-4">                   
+                                    <mat-form-field>                         
+                                        <mat-label for="Date_permis"> Date Permis</mat-label>
+                                        <input   matInput formControlName="Date_permis" id="Date_permis"[matDatepicker]="picker5"placeholder="DD/MM/YYYY" name="Date_permis" >
+                                        <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker5></mat-datepicker>   
+                                    </mat-form-field>
+                                </div>
+                            
+                            </div>
+
+                            <div>
+                                <button mat-button class="btn-danger" TYPE="reset" style="margin-top: 20px;">Annuler</button>
+                                <button mat-button matStepperPrevious class="btn-primary"style="margin-top: 20px; margin-right: 20px;">Retour</button>
+                                <button mat-button matStepperNext (click)="creeremploye()" class="btn-primary" style="margin-top: 20px;">Suivant</button>
+                            </div>
+                            
+                        
+                        </form>
+                    </mat-step> 
+
+                    <mat-step [stepControl]="Informations_Banques_Form">
+                        <form [formGroup]="Informations_Banques_Form">
+            
+                            <ng-template matStepLabel>Changer mot de passe</ng-template>
+                            
+                            <div class="row">
+                                
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Adresse"> Actuel </mat-label>
+                                        <input type="password" matInput formControlName="Adresse" id="Adresse" name="Adresse" required>
+                                        <mat-error *ngIf="Informations_Banques_Form.get('Adresse').invalid">{{MessageErreurAdresse()}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Adresse"> Nouvel </mat-label>
+                                        <input type="password" matInput formControlName="Adresse" id="Adresse" name="Adresse" required>
+                                        <mat-error *ngIf="Informations_Banques_Form.get('Adresse').invalid">{{MessageErreurAdresse()}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-4">
+                                    <mat-form-field>
+                                        <mat-label for="Adresse"> Confirmer </mat-label>
+                                        <input type="password" matInput formControlName="Adresse" id="Adresse" name="Adresse" required>
+                                        <mat-error *ngIf="Informations_Banques_Form.get('Adresse').invalid">{{MessageErreurAdresse()}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+
+
+                            <div>
+                                <button mat-button class="btn-danger" TYPE="reset" style="margin-top: 20px;">Annuler</button>
+                                <button mat-button matStepperPrevious class="btn-primary"style="margin-top: 20px; margin-right: 20px;">Retour</button>
+                                <button mat-button matStepperNext (click)="creeremploye()" class="btn-primary" style="margin-top: 20px;">Enregistrer</button>
+                            </div>
+                            
+                        
+                        </form>
+                    </mat-step> 
+                </mat-vertical-stepper>
+            </div>
+
+        </div>
+    </div>
+</div>
+  

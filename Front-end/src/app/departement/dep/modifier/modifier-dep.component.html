@@ -1,0 +1,102 @@
+<mat-vertical-stepper [linear]="passage_etape" #stepper>
+    
+    <mat-step [stepControl]="Informations_Generales_Form">
+        <form [formGroup]="Informations_Generales_Form">
+
+            <ng-template matStepLabel>Informations Générales</ng-template>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-4">
+                    <mat-form-field>
+                        <mat-label for="Nom_Departement"> Nom du departement </mat-label>
+                        <input type="text" matInput formControlName="Nom_Departement" id="Nom_Departement" name="Nom_Departement" required>
+                        <mat-error *ngIf="Informations_Generales_Form.get('Nom_Departement').invalid">{{MessageErreurNomDep()}}</mat-error>    
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <mat-form-field>
+                        <mat-label for="Nom"> Domaine </mat-label>
+                        <input type="text" matInput formControlName="Domaine" id="Domaine" name="Domaine" required>
+                        <mat-error *ngIf="Informations_Generales_Form.get('Domaine').invalid">{{MessageErreurDomaine()}}</mat-error>    
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <mat-form-field>
+                        <mat-label for="Effectif"> Effectif de l'equipe </mat-label>
+                        <input type="number" matInput formControlName="Effectif" id="Effectif" name="Effectif"required>
+                        <mat-error *ngIf="Informations_Generales_Form.get('Effectif').invalid">
+                           {{MessageErreurEffectif()}}</mat-error>    
+                    </mat-form-field>
+                </div>
+                
+            </div>
+               
+            <div>
+                <button mat-button class="btn-danger" TYPE="reset" style="margin-top: 20px;">Annuler</button>
+                <button mat-button matStepperNext (click)="creeremploye()" class="btn-primary" style="margin-top: 20px;">Suivant</button>
+            </div>
+       
+        </form>
+    </mat-step>
+  
+    <mat-step [stepControl]="Informations_Banques_Form">
+        <form [formGroup]="Informations_Banques_Form">
+
+            <ng-template matStepLabel>Informations Spécifiques</ng-template>
+            
+            <div class="row">
+                
+                <div class="col-md-3 mb-3">
+                    <mat-form-field>
+                        <mat-label> Image du département </mat-label>
+                        <ngx-mat-file-input matInput id="Image" name="Image" formControlName="Image" placeholder="Sélectionner image"accept="image/png, image/jpeg"></ngx-mat-file-input>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <mat-form-field>
+                        <mat-label for="Nom_Chef"> Nom du chef d'équipe </mat-label>
+                        <input type="text" matInput formControlName="Nom_Chef" id="Nom_Chef" name="Nom_Chef"required>
+                        <mat-error *ngIf="Informations_Banques_Form.get('Nom_Chef').invalid">{{MessageErreurNomChef()}}</mat-error>    
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <mat-form-field>
+                        <mat-label>Email du chef d'équipe</mat-label>
+                        <input type="email" matInput formControlName="Email" placeholder="Ex. pat@example.com" required>
+                        <mat-error *ngIf="Informations_Banques_Form.get('Email').invalid">{{MessageErreurEmail()}}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                        <mat-form-field>
+                            <mat-label>Téléphone du chef d'équipe</mat-label>
+                            <input type="number" matInput formControlName="Tel1" id="Tel1" name="Tel1"placeholder="(+216)99-999-999" required>
+                            <mat-error *ngIf="Informations_Banques_Form.get('Tel1').invalid">{{MessageErreurTel()}}</mat-error>
+                        </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <mat-form-field class="col-md-12 mb-12">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="Description" id="Description" name="Description"placeholder="Description"></textarea>
+                </mat-form-field>
+            </div>     
+
+            <div>
+                <button mat-button class="btn-danger" TYPE="reset" style="margin-top: 20px;">Annuler</button>
+                <button mat-button matStepperPrevious class="btn-primary"style="margin-top: 20px; margin-right: 20px;">Retour</button>
+                <button mat-button matStepperNext (click)="creeremploye()" class="btn-primary" style="margin-top: 20px;">Enregistrer</button>
+            </div>
+        
+        </form>
+    </mat-step> 
+    
+</mat-vertical-stepper>
+
+ 

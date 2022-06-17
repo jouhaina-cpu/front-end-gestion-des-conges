@@ -1,0 +1,73 @@
+ <div class="row">
+    
+    <div class="col-md-3 mb-3">
+        <mat-label for="filtre_par">Choisir un filtre</mat-label>
+        <mat-select id="filtre_par" name="filtre_par" (selectionChange)="ChoixFiltre($event)">
+            <mat-option *ngFor="let filtre of liste_Filtres" [value]="filtre.value">
+                <span *ngIf="filtre.viewValue=='id_employe'">ID Employé</span>              
+            </mat-option>
+        </mat-select>
+    </div>
+
+    <div class="search-wrapper active" >
+        <div class="input-holder">
+            <input matInput (keyup)="applyFilter($event)" class="search-input" placeholder="Saisir pour chercher" #input>
+            <button class="search-icon" (click)="filtrer()"><span></span></button>
+        </div>
+    </div>
+
+</div>
+
+<div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="id_Employe">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Id"> {{element.id_Employe}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Image">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Image </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Image"> <img src="../../assets/images/1.jpg" style="height: 50px;width: 50px;margin-top: 2px; margin-bottom: 2px;" /> </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Salaire">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Salaire de base </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Salaire"> {{element.Salaire}}</mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Prime">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Prime </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Prime"> {{element.Prime}} </mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Heures_supp">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Heures_supp </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Heures_supp"> {{element.Heures_supp}} </mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Heures_abs">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Heures_abs </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Heures_abs"> {{element.Heures_abs}} </mat-cell>
+        </ng-container>
+       
+        <ng-container matColumnDef="Supprimer">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element" style="text-align: center;">
+                <mat-icon routerLink="/Menu/Menu-RH/Menu-bulletin-paie/Visualiser-bulletin-paie"title="Visualiser">remove_red_eye</mat-icon>
+                <mat-icon (click)="supprimeremploye()" title="Supprimer" style="color: rgba(255, 0, 0, 0.664); margin-left: 15px;">delete </mat-icon>
+                <mat-icon title="Modifier" routerLink="/Menu/Menu-RH/Menu-bulletin-paie/Modifer-bulletin-paie" style="color:blue;margin-left: 15px;">edit </mat-icon>
+                <mat-icon title="Télécharger PDF" (click)="genererPdf()" style="color: green; margin-left: 15px;">cloud_download</mat-icon>
+            </mat-cell>
+        </ng-container>
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+   
+    </table>
+ 
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+ 
+</div> 
+ 

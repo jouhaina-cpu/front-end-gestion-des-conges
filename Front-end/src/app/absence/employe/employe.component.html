@@ -1,0 +1,69 @@
+<div class="row">
+
+    <div class="col-md-3 mb-3">
+        <mat-label for="filtre_par">Choisir un filtre</mat-label>
+        <mat-select id="filtre_par" name="filtre_par" (selectionChange)="ChoixFiltre($event)">
+            <mat-option *ngFor="let filtre of liste_Filtres" [value]="filtre.value">
+                <span *ngIf="filtre.viewValue=='id_employe'">ID Employé</span> 
+                <span *ngIf="filtre.viewValue=='categorie_employe'">Catégorie employe</span>   
+                <span *ngIf="filtre.viewValue=='email'">Email</span>          
+                <span *ngIf="filtre.viewValue=='n_piece_identite'">Numéro de pièce d'identité</span>
+                <span *ngIf="filtre.viewValue=='nom'">Nom</span>
+               <span *ngIf="filtre.viewValue=='rib'">Rib </span>               
+            </mat-option>
+        </mat-select>
+    </div>
+
+    <div class="search-wrapper active" >
+        <div class="input-holder">
+            <input matInput (keyup)="applyFilter($event)" class="search-input" placeholder="Saisir pour chercher" #input>
+            <button class="search-icon" (click)="filtrer()"><span></span></button>
+        </div>
+    </div>
+
+</div>
+
+<div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" matSort>
+ 
+        <ng-container matColumnDef="id_Employe">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Id"> {{element.id_Employe}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Image">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Image </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Image"> <img src="../../assets/images/1.jpg"style="height: 50px;width: 50px;margin-top: 2px; margin-bottom: 2px;" /> </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="nom">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Nom"> {{element.nom_Employe}}</mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Date arrivée">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Date d'arrivée </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="dateA"> {{element.dateA}} </mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="Date de sortie">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Date de sortie </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="dateS"> {{element.dateS}} </mat-cell>
+        </ng-container>
+ 
+        <ng-container matColumnDef="prenom">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Prenom </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="prenom"> {{element.prenom}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </table>
+ 
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div> 
+ 

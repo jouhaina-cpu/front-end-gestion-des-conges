@@ -1,0 +1,63 @@
+<mat-vertical-stepper [linear]="passage_etape" #stepper>
+    
+    <mat-step [stepControl]="Informations_Generales_Form">
+        <form [formGroup]="Informations_Generales_Form">
+
+            <ng-template matStepLabel>Informations Congé</ng-template>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-4">
+                    <mat-form-field>
+                        <mat-label for="Role"> Type </mat-label>
+                        <mat-select  formControlName="Role" id="Role" name="Role"placeholder="Type" required>
+                            <mat-option value=" "></mat-option>
+                            <mat-option *ngFor="let role of roles" [value]="role.value">{{role.viewValue}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="Informations_Generales_Form.get('Role').invalid">{{MessageErreurrole()}}</mat-error> 
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <mat-form-field>
+                        <mat-label> Justificatif </mat-label>
+                        <ngx-mat-file-input matInput id="Image" name="Image" formControlName="Image"placeholder="Piéce jointe" accept="image/png, image/jpeg">
+                        </ngx-mat-file-input>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Periode de congé</mat-label>
+                        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                            <input matStartDate formControlName="start" placeholder="Start date">
+                            <input matEndDate formControlName="end" placeholder="End date">
+                        </mat-date-range-input>
+                        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+                    </mat-form-field>
+                </div>
+            
+            </div>
+
+            <div class="row">
+                <mat-form-field class="col-md-12 mb-12">
+                    <mat-label>Raison</mat-label>
+                    <textarea matInput formControlName="Description" id="Description" name="Description"placeholder="Raison"></textarea>
+                </mat-form-field>  
+            </div>          
+            
+            <div>
+                <button mat-button class="btn-danger" TYPE="reset" style="margin-top: 20px;">Annuler</button>
+                <button mat-button matStepperNext (click)="creeremploye()" class="btn-primary" style="margin-top: 20px;">Enregistrer</button>
+            </div>
+        </form>
+    </mat-step>
+
+
+</mat-vertical-stepper>
+
+ 

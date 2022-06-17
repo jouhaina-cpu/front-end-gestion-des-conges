@@ -1,0 +1,61 @@
+::ng-deep.mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
+::ng-deep.mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
+  
+  color:#0275d8 !important;
+  opacity: 1;
+}
+.grid-container {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  padding: 10px;
+  grid-template-columns: auto 1fr;
+
+}
+img {
+  width: 18vw;
+  padding-top: -10%;
+  border-radius: 10%;
+  box-shadow: 15px 15px 15px grey;
+}
+.inline {
+  display: inline-flex;
+  align-items: center;
+  padding: 0% 2vw;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  
+  font-size: 15px;
+}
+
+.row {
+  margin-top: 0px;
+  margin-right: 0px;
+	margin-left: 0px
+}
+.item3 {
+  margin-right: -15px;
+  grid-row: 3;
+  grid-column: 1 / span 2;
+}
+.item1 {
+  grid-column: 1 / span 1;
+  grid-row: 1;
+}
+
+.item5 {
+  grid-column: 1 / span 2;
+  grid-row: 5;
+  margin-right: -15px;
+}
+.zoom {
+  padding: 50px;
+  transition: transform .2s; 
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+.zoom:hover {
+  transform: scale(1.3); 
+}
